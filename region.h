@@ -3,32 +3,37 @@
 
 #include <vector>
 #include <string>
-
-struct Cell {
-    char zoneType;   // R, I, C, -, T, #, P
-    int population;  // Population of the zone
-    int pollution;   // Pollution level
-};
+#include <iostream>
 
 class Region {
+public:
+    struct Cell {
+        char zoneType = '-';   // Zone type (R, I, C, -, T, #, P)
+        int population = 0;    // Population of the zone
+        int pollution = 0;     // Pollution level
+    };
+
 private:
     std::vector<std::vector<Cell>> grid;
 
 public:
-    bool readRegionFile(const std::string& fileName);
-    void printRegion() const;
-    void simulateGrowth();
-    int getAvailableWorkers() const;
-    int getAvailableGoods() const;
+    Region() = default;
+    ~Region() = default;
 
-    int getTotalPopulation() const;  // Declaration for total population function
-    int getTotalPollution() const;   // Declaration for total pollution function
+    bool readRegionFile(const std::string &fileName);
+    void printRegion(int step) const;
+    void simulateGrowth(int maxSteps, int refreshRate);
+    void analyzeArea(int x1, int y1, int x2, int y2) const;
+    void outputFinalTotals() const;
 
-    void printRegionWithPopulation() const;
+    int calculateAvailableWorkers() const;
+    int calculateAvailableGoods() const;
 
-    // Declare the isAdjacentTo function here
+    int getTotalPopulation(char zoneType) const;
+    int getTotalPollution() const;
+
+private:
     int isAdjacentTo(const Cell& cell, char zoneType, int minPopulation, int x, int y) const;
-
 };
 
 #endif

@@ -4,16 +4,16 @@
 #include <string>
 
 class Config {
-private:
-    std::string regionFile;
-    int maxTimeSteps;
-    int refreshRate;
-
 public:
-    bool loadConfig(const std::string& fileName);
-    std::string getRegionFile() const { return regionFile; }
+    bool readConfigFile(const std::string &fileName);
+    std::string getRegionLayoutFile() const { return regionLayoutFile; }
     int getMaxTimeSteps() const { return maxTimeSteps; }
     int getRefreshRate() const { return refreshRate; }
+
+private:
+    std::string regionLayoutFile;
+    int maxTimeSteps;
+    int refreshRate;
 };
 
 #endif

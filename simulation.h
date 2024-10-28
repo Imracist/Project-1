@@ -5,19 +5,13 @@
 #include "region.h"
 
 class Simulation {
-private:
-    Config config;
-    Region region;
-    int currentTimeStep;
-
 public:
-    Simulation(const Config& config, const Region& region);
+    Simulation(const Config& config, Region& region);
     void run();
 
 private:
-    // Declare the printWorkersAndGoods function here
-    void printWorkersAndGoods() const;
+    const Config& config;
+    Region& region;
 };
-
 
 #endif

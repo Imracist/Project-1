@@ -4,18 +4,20 @@
 #include "simulation.h"
 
 int main() {
+    std::string configFileName;
+    std::cout << "Enter the config file name: ";
+    std::cin >> configFileName;
+
     Config config;
-    if (!config.loadConfig("config1.txt")) {
-        std::cerr << "Error reading config file!" << std::endl;
+    if (!config.readConfigFile(configFileName)) {
+        std::cerr << "Failed to read configuration file." << std::endl;
         return 1;
     }
 
-    std::string regionFile = config.getRegionFile();
-    std::cout << "Trying to load region layout from: " << regionFile << std::endl;
-
     Region region;
-    if (!region.readRegionFile(regionFile)) {
-        std::cerr << "Error reading region layout!" << std::endl;
+    // Change this line to use getRegionLayoutFile() instead of getRegionLayout()
+    if (!region.readRegionFile(config.getRegionLayoutFile())) {
+        std::cerr << "Failed to read region layout file." << std::endl;
         return 1;
     }
 

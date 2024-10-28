@@ -1,11 +1,10 @@
 CXX = g++
 CXXFLAGS = -Wall -std=c++11
-TARGET = simcity
 
-all: $(TARGET)
+all: simcity
 
-$(TARGET): main.o config.o region.o simulation.o
-	$(CXX) $(CXXFLAGS) -o $(TARGET) main.o config.o region.o simulation.o
+simcity: main.o config.o region.o simulation.o
+	$(CXX) $(CXXFLAGS) -o simcity main.o config.o region.o simulation.o
 
 main.o: main.cpp config.h region.h simulation.h
 	$(CXX) $(CXXFLAGS) -c main.cpp
@@ -20,4 +19,4 @@ simulation.o: simulation.cpp simulation.h
 	$(CXX) $(CXXFLAGS) -c simulation.cpp
 
 clean:
-	rm -f *.o $(TARGET)
+	rm -f *.o simcity
