@@ -1,3 +1,9 @@
+<<<<<<< HEAD
 region1.csv
 20
 1
+=======
+Region Layout:region1.csv
+Time Limit:20
+Refresh Rate:1
+>>>>>>> origin/main
